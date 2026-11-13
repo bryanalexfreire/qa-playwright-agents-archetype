@@ -1,0 +1,20 @@
+[
+  {
+    "id": "DD-01",
+    "description": "two phones",
+    "products": ["Samsung galaxy s6", "Nokia lumia 1520"],
+    "customer": { "country": "Colombia", "city": "Bogotá" }
+  },
+  {
+    "id": "DD-02",
+    "description": "a laptop and a monitor",
+    "products": ["Sony vaio i5", "Apple monitor 24"],
+    "customer": { "country": "Ecuador", "city": "Quito", "month": "12", "year": "2027" }
+  },
+  {
+    "id": "DD-03",
+    "description": "a phone and a laptop, only the mandatory fields",
+    "products": ["Nexus 6", "MacBook air"],
+    "customer": { "country": "", "city": "", "month": "", "year": "" }
+  }
+]

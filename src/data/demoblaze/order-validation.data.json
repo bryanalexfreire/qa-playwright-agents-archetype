@@ -1,0 +1,20 @@
+[
+  {
+    "id": "DD-V01",
+    "description": "empty name",
+    "customer": { "name": "" },
+    "expectedAlert": "Please fill out Name and Creditcard."
+  },
+  {
+    "id": "DD-V02",
+    "description": "empty credit card",
+    "customer": { "card": "" },
+    "expectedAlert": "Please fill out Name and Creditcard."
+  },
+  {
+    "id": "DD-V03",
+    "description": "all fields empty",
+    "customer": { "name": "", "country": "", "city": "", "card": "", "month": "", "year": "" },
+    "expectedAlert": "Please fill out Name and Creditcard."
+  }
+]

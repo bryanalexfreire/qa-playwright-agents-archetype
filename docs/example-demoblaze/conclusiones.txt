@@ -1,0 +1,45 @@
+DEMOBLAZE E2E PURCHASE - FINDINGS AND CONCLUSIONS
+=================================================
+Run: 13 Nov 2026, Chromium (Playwright 1.65.0), Windows 11.
+Result: 6 passed, 1 failed (known defect BUG-001).
+
+1. Coverage
+-----------
+- PUR-01 Add two products: 3 data-driven scenarios (phones; laptop + monitor; phone + laptop),
+  checking the "Product added" alert of each addition.
+- PUR-02 Cart: every product listed with its price; total = sum of the catalog prices.
+- PUR-03 Purchase form: filled with full data and with only the mandatory fields;
+  3 negative cases (empty name, empty card, all empty) refused with
+  "Please fill out Name and Creditcard.".
+- PUR-04 Confirmation: title, numeric order Id, Amount = cart total, Card Number and Name
+  equal to the form values, and the date.
+
+2. Findings
+-----------
+BUG-001 (Major / Medium) - Confirmation shows the previous month.
+  Steps: add any product, open the cart, Place Order, fill Name and Credit card, Purchase.
+  Expected: Date = today (13/11/2026). Actual: "Date: 13/10/2026".
+  The month appears to be zero-based. Regression spec: tests/bugs/demoblaze/BUG-001.spec.ts.
+
+Observation (accessibility, Minor): the "Total" label of the order form is linked to the
+  Name input (two labels for="name"), so the accessible name of Name is "Total: … Name:".
+  Screen-reader users hear the total instead of the field name. The automation locates the
+  form fields by id for this reason.
+
+Observation (usability): Country, City, Month and Year accept any text (no format or range
+  check, e.g. month "13"). The requirements do not say whether they should be validated:
+  question for the product owner, not reported as a bug.
+
+Observation (design): "Add to cart" and the form errors use native browser alerts; they
+  block the page and cannot be styled or read by some assistive technologies.
+
+3. Conclusions
+--------------
+- The main purchase flow works for the tested products and data: products, cart total
+  and order amount are consistent.
+- The confirmation date is wrong (BUG-001); orders show an incorrect date to customers.
+- Validation is limited to Name and Credit card.
+- The automation is maintainable: Page Objects and component objects isolate locators,
+  fixtures inject them, and scenarios live in JSON (data-driven), so new cases need no code.
+- Recommended next steps: fix BUG-001, decide validation rules for the optional fields,
+  fix the duplicated label, and run the suite on Firefox, WebKit and mobile in CI.

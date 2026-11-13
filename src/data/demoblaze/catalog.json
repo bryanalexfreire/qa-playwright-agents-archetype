@@ -1,0 +1,10 @@
+[
+  { "name": "Samsung galaxy s6", "category": "Phones", "price": 360 },
+  { "name": "Nokia lumia 1520", "category": "Phones", "price": 820 },
+  { "name": "Nexus 6", "category": "Phones", "price": 650 },
+  { "name": "Sony xperia z5", "category": "Phones", "price": 320 },
+  { "name": "Sony vaio i5", "category": "Laptops", "price": 790 },
+  { "name": "MacBook air", "category": "Laptops", "price": 700 },
+  { "name": "Apple monitor 24", "category": "Monitors", "price": 400 },
+  { "name": "ASUS Full HD", "category": "Monitors", "price": 230 }
+]
