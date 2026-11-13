@@ -1,0 +1,146 @@
+<testsuites id="" name="" tests="9" failures="1" skipped="2" errors="0" time="45.52338">
+<testsuite name="auth.setup.ts" timestamp="2026-11-13T20:39:29.586Z" hostname="setup" tests="2" failures="0" skipped="2" time="2.565" errors="0">
+<testcase name="sign in as member" classname="auth.setup.ts">
+<properties>
+<property name="skip" value="No test credentials for role &quot;member&quot; in .env">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="sign in as admin" classname="auth.setup.ts">
+<properties>
+<property name="skip" value="No test credentials for role &quot;admin&quot; in .env">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="bugs\demoblaze\BUG-001.spec.ts" timestamp="2026-11-13T20:39:29.586Z" hostname="chromium" tests="1" failures="1" skipped="0" time="9.661" errors="0">
+<testcase name="BUG-001 · Purchase confirmation shows today&apos;s date" classname="bugs\demoblaze\BUG-001.spec.ts" time="9.661">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\attachments\BUG-001-confirmation-date-3ab10e20227c63266f411470ce03900e93ac2897.png]]
+
+[[ATTACHMENT|..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\video.webm]]
+
+[[ATTACHMENT|..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\error-context.md]]
+
+[[ATTACHMENT|..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [chromium] › bugs\demoblaze\BUG-001.spec.ts:11:1 › BUG-001 · Purchase confirmation shows today's date @bug @example 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "13/11/2026"
+    Received: "13/10/2026"
+
+      20 |
+      21 |   const today = new Date();
+    > 22 |   expect(confirmation.date).toBe(`${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`);
+         |                             ^
+      23 | });
+      24 |
+        at C:\Users\User\Desktop\playwright archetype\tests\bugs\demoblaze\BUG-001.spec.ts:22:29
+
+    attachment #1: BUG-001-confirmation-date (image/png) ───────────────────────────────────────────
+    ..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\attachments\BUG-001-confirmation-date-3ab10e20227c63266f411470ce03900e93ac2897.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="e2e\demoblaze\order-validation.spec.ts" timestamp="2026-11-13T20:39:29.586Z" hostname="chromium" tests="3" failures="0" skipped="0" time="18.826" errors="0">
+<testcase name="Demoblaze order form validation › PUR-03 · Order is refused with empty name (DD-V01)" classname="e2e\demoblaze\order-validation.spec.ts" time="9.466">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\e2e-demoblaze-order-valida-649a7-sed-with-empty-name-DD-V01--chromium\attachments\TC-04-DD-V01-form-before-purchase-a7f225dfcbd023efdff84ecfcd7c1cda816aa39b.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-order-valida-649a7-sed-with-empty-name-DD-V01--chromium\attachments\TC-04-DD-V01-form-still-open-72768042b140caacebb559fb96cc873bbc6f7f81.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Demoblaze order form validation › PUR-03 · Order is refused with empty credit card (DD-V02)" classname="e2e\demoblaze\order-validation.spec.ts" time="4.805">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\e2e-demoblaze-order-valida-ed87f-h-empty-credit-card-DD-V02--chromium\attachments\TC-04-DD-V02-form-before-purchase-d13e387eb09a25eafe0246f082239f1abc3e2939.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-order-valida-ed87f-h-empty-credit-card-DD-V02--chromium\attachments\TC-04-DD-V02-form-still-open-2eac19cf6354b0d54222529fc7832af06f89f4c5.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Demoblaze order form validation › PUR-03 · Order is refused with all fields empty (DD-V03)" classname="e2e\demoblaze\order-validation.spec.ts" time="4.555">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\e2e-demoblaze-order-valida-0a26d-th-all-fields-empty-DD-V03--chromium\attachments\TC-04-DD-V03-form-before-purchase-68f3f663fad3c78ed6d33e32735595e9b4eb7054.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-order-valida-0a26d-th-all-fields-empty-DD-V03--chromium\attachments\TC-04-DD-V03-form-still-open-e7e63827ffd9cc51233e343fc431d4cac093fb74.png]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="e2e\demoblaze\purchase.spec.ts" timestamp="2026-11-13T20:39:29.586Z" hostname="chromium" tests="3" failures="0" skipped="0" time="35.783" errors="0">
+<testcase name="Demoblaze purchase flow › PUR-04 · Customer buys two phones (DD-01)" classname="e2e\demoblaze\purchase.spec.ts" time="7.142">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\attachments\TC-01-DD-01-last-product-added-49ad792e4aae2643dec42dbc3aa3dd7d2c90b8b8.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\attachments\TC-02-DD-01-cart-e77da37b3c29d72dcd2ee0e0f06028b68479d255.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\attachments\TC-03-DD-01-order-form-b21c6f705499c32a3b6253da353a4a1d52b6b7a7.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\attachments\TC-03-DD-01-confirmation-13d3042800fc72bb9c8b523c1df42ffa23f20b42.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Demoblaze purchase flow › PUR-04 · Customer buys a laptop and a monitor (DD-02)" classname="e2e\demoblaze\purchase.spec.ts" time="8.654">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\attachments\TC-01-DD-02-last-product-added-a1eb032cc1c7448d8f20f990364e283fa97cb200.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\attachments\TC-02-DD-02-cart-bf7da487df406e66db8d4a8ff2cd2581ff011cb5.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\attachments\TC-03-DD-02-order-form-affd85cfae2a936e475ad1d4fb25c363173ce11d.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\attachments\TC-03-DD-02-confirmation-359fd109008bc6c4e96f0f9570a34d8534c10e88.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Demoblaze purchase flow › PUR-04 · Customer buys a phone and a laptop, only the mandatory fields (DD-03)" classname="e2e\demoblaze\purchase.spec.ts" time="19.987">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\attachments\TC-01-DD-03-last-product-added-22d6964f04eb958de0d74b728484931f31239e91.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\attachments\TC-02-DD-03-cart-a570553120fe39a0c0b64dd0666448e55186e9e0.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\attachments\TC-03-DD-03-order-form-4903e06a7894c3f298b328406ee37341728c6fc1.png]]
+
+[[ATTACHMENT|..\test-results\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\attachments\TC-03-DD-03-confirmation-9fb9f4157693466230322af2b76652171b626f8b.png]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
