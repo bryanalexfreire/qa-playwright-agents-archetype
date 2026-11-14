@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop, 'release/**', 'hotfix/**']
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write          # JUnit test report as a check run
+  pull-requests: write   # test report summary on the pull request
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint:specs
+
+  e2e:
+    name: E2E (${{ github.event_name == 'pull_request' && 'chromium' || 'all browsers' }})
+    needs: static
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BASE_URL: ${{ vars.BASE_URL }}
+      MEMBER_USER: ${{ secrets.MEMBER_USER }}
+      MEMBER_PASSWORD: ${{ secrets.MEMBER_PASSWORD }}
+      ADMIN_USER: ${{ secrets.ADMIN_USER }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Install browsers
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            npx playwright install --with-deps chromium
+          else
+            npx playwright install --with-deps
+          fi
+
+      # Pull requests: chromium only (fast feedback). develop / release / hotfix: every browser and device.
+      # The run never stops the job here; the publish step decides (known-bug specs @bug do not fail it).
+      - name: Run tests
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            npx playwright test --project=setup --project=chromium || true
+          else
+            npx playwright test || true
+          fi
+
+      - name: Publish report (job summary + versioned folder)
+        id: report
+        if: always()
+        run: npm run report:publish -- --label "ci-${{ github.run_number }}-${{ github.ref_name }}"
+
+      - name: Test results in the checks tab (JUnit)
+        if: always() && hashFiles('playwright-report/junit.xml') != ''
+        uses: dorny/test-reporter@v1
+        with:
+          name: Playwright results
+          path: playwright-report/junit.xml
+          reporter: java-junit
+          fail-on-error: false
+
+      - name: Upload report and evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report-${{ github.run_number }}
+          path: |
+            ${{ steps.report.outputs.dir }}
+            test-results/
+          retention-days: 30
+
+      - name: Fail on unexpected failures (known bugs are reported, not blocking)
+        if: always() && steps.report.outputs.unexpected != '0'
+        run: |
+          echo "Unexpected failures: ${{ steps.report.outputs.unexpected }} (known bugs: ${{ steps.report.outputs.known_bugs }})"
+          exit 1
