@@ -1,0 +1,870 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\User\\Desktop\\playwright archetype\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/demoblaze",
+      "tests/bugs/demoblaze",
+      "--project=chromium",
+      "--workers=2"
+    ],
+    "configFile": "C:\\Users\\User\\Desktop\\playwright archetype\\playwright.config.ts",
+    "rootDir": "C:/Users/User/Desktop/playwright archetype/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/playwright archetype/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "C:/Users/User/Desktop/playwright archetype/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\.setup\\.ts/"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/User/Desktop/playwright archetype/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/User/Desktop/playwright archetype/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/User/Desktop/playwright archetype/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/User/Desktop/playwright archetype/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/User/Desktop/playwright archetype/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/User/Desktop/playwright archetype/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/User/Desktop/playwright archetype/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "mobile-chrome",
+        "name": "mobile-chrome",
+        "testDir": "C:/Users/User/Desktop/playwright archetype/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/User/Desktop/playwright archetype/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "mobile-safari",
+        "name": "mobile-safari",
+        "testDir": "C:/Users/User/Desktop/playwright archetype/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\User\\Desktop\\playwright archetype\\tests",
+        "snapshotDir": "C:\\Users\\User\\Desktop\\playwright archetype\\tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "video": "retain-on-failure",
+          "actionTimeout": 10000,
+          "navigationTimeout": 20000,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.8127.18 Safari/537.36",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [
+          "setup"
+        ],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "playwright-report/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "auth.setup.ts",
+      "file": "auth.setup.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "sign in as member",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "No test credentials for role \"member\" in .env",
+                  "location": {
+                    "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\auth.setup.ts",
+                    "line": 13,
+                    "column": 11
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "setup",
+              "projectName": "setup",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 1283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T20:39:30.181Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "No test credentials for role \"member\" in .env",
+                      "location": {
+                        "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\auth.setup.ts",
+                        "line": 13,
+                        "column": 11
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "17e3fe6f4d9d8bd79c6b-57c10b14a312b93671e0",
+          "file": "auth.setup.ts",
+          "line": 10,
+          "column": 3
+        },
+        {
+          "title": "sign in as admin",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "No test credentials for role \"admin\" in .env",
+                  "location": {
+                    "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\auth.setup.ts",
+                    "line": 13,
+                    "column": 11
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "setup",
+              "projectName": "setup",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "skipped",
+                  "duration": 1282,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T20:39:30.195Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "No test credentials for role \"admin\" in .env",
+                      "location": {
+                        "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\auth.setup.ts",
+                        "line": 13,
+                        "column": 11
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "17e3fe6f4d9d8bd79c6b-cadf34b61cf49d8fa16e",
+          "file": "auth.setup.ts",
+          "line": 10,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "bugs\\demoblaze\\BUG-001.spec.ts",
+      "file": "bugs/demoblaze/BUG-001.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "BUG-001 · Purchase confirmation shows today's date",
+          "ok": false,
+          "tags": [
+            "bug",
+            "example"
+          ],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9661,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"13/1\u001b[7m1\u001b[27m/2026\"\u001b[39m\nReceived: \u001b[31m\"13/1\u001b[7m0\u001b[27m/2026\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"13/1\u001b[7m1\u001b[27m/2026\"\u001b[39m\nReceived: \u001b[31m\"13/1\u001b[7m0\u001b[27m/2026\"\u001b[39m\n    at C:\\Users\\User\\Desktop\\playwright archetype\\tests\\bugs\\demoblaze\\BUG-001.spec.ts:22:29",
+                    "location": {
+                      "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\bugs\\demoblaze\\BUG-001.spec.ts",
+                      "column": 29,
+                      "line": 22
+                    },
+                    "snippet": " \u001b[90m 20 |\u001b[39m\n \u001b[90m 21 |\u001b[39m   \u001b[36mconst\u001b[39m today \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mDate\u001b[39m()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 |\u001b[39m   expect(confirmation\u001b[33m.\u001b[39mdate)\u001b[33m.\u001b[39mtoBe(\u001b[32m`${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 23 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\bugs\\demoblaze\\BUG-001.spec.ts",
+                        "column": 29,
+                        "line": 22
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"13/1\u001b[7m1\u001b[27m/2026\"\u001b[39m\nReceived: \u001b[31m\"13/1\u001b[7m0\u001b[27m/2026\"\u001b[39m\n\n  20 |\n  21 |   const today = new Date();\n> 22 |   expect(confirmation.date).toBe(`${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`);\n     |                             ^\n  23 | });\n  24 |\n    at C:\\Users\\User\\Desktop\\playwright archetype\\tests\\bugs\\demoblaze\\BUG-001.spec.ts:22:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T20:39:33.045Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "BUG-001-confirmation-date",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\\attachments\\BUG-001-confirmation-date-3ab10e20227c63266f411470ce03900e93ac2897.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\bugs-demoblaze-BUG-001-BUG-68306-irmation-shows-today-s-date-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\User\\Desktop\\playwright archetype\\tests\\bugs\\demoblaze\\BUG-001.spec.ts",
+                    "column": 29,
+                    "line": 22
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "bfd78c7033d948580543-b061776e597df11950a8",
+          "file": "bugs/demoblaze/BUG-001.spec.ts",
+          "line": 11,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "e2e\\demoblaze\\order-validation.spec.ts",
+      "file": "e2e/demoblaze/order-validation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Demoblaze order form validation",
+          "file": "e2e/demoblaze/order-validation.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PUR-03 · Order is refused with empty name (DD-V01)",
+              "ok": true,
+              "tags": [
+                "regression",
+                "example",
+                "risk:R-01"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9466,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-13T20:39:33.042Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "TC-04-DD-V01-form-before-purchase",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-order-valida-649a7-sed-with-empty-name-DD-V01--chromium\\attachments\\TC-04-DD-V01-form-before-purchase-a7f225dfcbd023efdff84ecfcd7c1cda816aa39b.png"
+                        },
+                        {
+                          "name": "TC-04-DD-V01-alert",
+                          "contentType": "application/json",
+                          "body": "ewogICJtZXNzYWdlIjogIlBsZWFzZSBmaWxsIG91dCBOYW1lIGFuZCBDcmVkaXRjYXJkLiIKfQ=="
+                        },
+                        {
+                          "name": "TC-04-DD-V01-form-still-open",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-order-valida-649a7-sed-with-empty-name-DD-V01--chromium\\attachments\\TC-04-DD-V01-form-still-open-72768042b140caacebb559fb96cc873bbc6f7f81.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aac985bc52fee6e177fe-0df70e6e74a45a9374a3",
+              "file": "e2e/demoblaze/order-validation.spec.ts",
+              "line": 17,
+              "column": 5
+            },
+            {
+              "title": "PUR-03 · Order is refused with empty credit card (DD-V02)",
+              "ok": true,
+              "tags": [
+                "regression",
+                "example",
+                "risk:R-01"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4805,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-13T20:39:42.683Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "TC-04-DD-V02-form-before-purchase",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-order-valida-ed87f-h-empty-credit-card-DD-V02--chromium\\attachments\\TC-04-DD-V02-form-before-purchase-d13e387eb09a25eafe0246f082239f1abc3e2939.png"
+                        },
+                        {
+                          "name": "TC-04-DD-V02-alert",
+                          "contentType": "application/json",
+                          "body": "ewogICJtZXNzYWdlIjogIlBsZWFzZSBmaWxsIG91dCBOYW1lIGFuZCBDcmVkaXRjYXJkLiIKfQ=="
+                        },
+                        {
+                          "name": "TC-04-DD-V02-form-still-open",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-order-valida-ed87f-h-empty-credit-card-DD-V02--chromium\\attachments\\TC-04-DD-V02-form-still-open-2eac19cf6354b0d54222529fc7832af06f89f4c5.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aac985bc52fee6e177fe-c265b9bee88f29e53633",
+              "file": "e2e/demoblaze/order-validation.spec.ts",
+              "line": 17,
+              "column": 5
+            },
+            {
+              "title": "PUR-03 · Order is refused with all fields empty (DD-V03)",
+              "ok": true,
+              "tags": [
+                "regression",
+                "example",
+                "risk:R-01"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4555,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-13T20:39:43.944Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "TC-04-DD-V03-form-before-purchase",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-order-valida-0a26d-th-all-fields-empty-DD-V03--chromium\\attachments\\TC-04-DD-V03-form-before-purchase-68f3f663fad3c78ed6d33e32735595e9b4eb7054.png"
+                        },
+                        {
+                          "name": "TC-04-DD-V03-alert",
+                          "contentType": "application/json",
+                          "body": "ewogICJtZXNzYWdlIjogIlBsZWFzZSBmaWxsIG91dCBOYW1lIGFuZCBDcmVkaXRjYXJkLiIKfQ=="
+                        },
+                        {
+                          "name": "TC-04-DD-V03-form-still-open",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-order-valida-0a26d-th-all-fields-empty-DD-V03--chromium\\attachments\\TC-04-DD-V03-form-still-open-e7e63827ffd9cc51233e343fc431d4cac093fb74.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aac985bc52fee6e177fe-8a0529c28b8293b07450",
+              "file": "e2e/demoblaze/order-validation.spec.ts",
+              "line": 17,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\demoblaze\\purchase.spec.ts",
+      "file": "e2e/demoblaze/purchase.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Demoblaze purchase flow",
+          "file": "e2e/demoblaze/purchase.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PUR-04 · Customer buys two phones (DD-01)",
+              "ok": true,
+              "tags": [
+                "e2e",
+                "example",
+                "risk:R-01"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7142,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "PUR-01 · Add two products to the cart",
+                          "duration": 3797
+                        },
+                        {
+                          "title": "PUR-02 · Cart lists the products and the right total",
+                          "duration": 1688
+                        },
+                        {
+                          "title": "PUR-03 · Complete the purchase form",
+                          "duration": 1004
+                        },
+                        {
+                          "title": "PUR-04 · Finish the purchase and check the confirmation",
+                          "duration": 345
+                        }
+                      ],
+                      "startTime": "2026-11-13T20:39:47.526Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "TC-01-DD-01-last-product-added",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\\attachments\\TC-01-DD-01-last-product-added-49ad792e4aae2643dec42dbc3aa3dd7d2c90b8b8.png"
+                        },
+                        {
+                          "name": "TC-02-DD-01-cart",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\\attachments\\TC-02-DD-01-cart-e77da37b3c29d72dcd2ee0e0f06028b68479d255.png"
+                        },
+                        {
+                          "name": "TC-03-DD-01-order-form",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\\attachments\\TC-03-DD-01-order-form-b21c6f705499c32a3b6253da353a4a1d52b6b7a7.png"
+                        },
+                        {
+                          "name": "TC-03-DD-01-confirmation",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-a14f5-omer-buys-two-phones-DD-01--chromium\\attachments\\TC-03-DD-01-confirmation-13d3042800fc72bb9c8b523c1df42ffa23f20b42.png"
+                        },
+                        {
+                          "name": "TC-03-DD-01-confirmation-data",
+                          "contentType": "application/json",
+                          "body": "ewogICJ0aXRsZSI6ICJUaGFuayB5b3UgZm9yIHlvdXIgcHVyY2hhc2UhIiwKICAiaWQiOiAiNzQ0MTgzOSIsCiAgImFtb3VudCI6IDExODAsCiAgImNhcmROdW1iZXIiOiAiVEVTVC1DQVJELU1XRkZYQ0lKMzgwMiIsCiAgIm5hbWUiOiAiUUEgVGVzdGVyIG13ZmZ4Y2lqMzgwMiIsCiAgImRhdGUiOiAiMTMvMTAvMjAyNiIKfQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "161251ec27521b3157b4-a8341a9d2f7a4104bd6d",
+              "file": "e2e/demoblaze/purchase.spec.ts",
+              "line": 12,
+              "column": 5
+            },
+            {
+              "title": "PUR-04 · Customer buys a laptop and a monitor (DD-02)",
+              "ok": true,
+              "tags": [
+                "e2e",
+                "example",
+                "risk:R-01"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8654,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "PUR-01 · Add two products to the cart",
+                          "duration": 3965
+                        },
+                        {
+                          "title": "PUR-02 · Cart lists the products and the right total",
+                          "duration": 3116
+                        },
+                        {
+                          "title": "PUR-03 · Complete the purchase form",
+                          "duration": 877
+                        },
+                        {
+                          "title": "PUR-04 · Finish the purchase and check the confirmation",
+                          "duration": 259
+                        }
+                      ],
+                      "startTime": "2026-11-13T20:39:48.654Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "TC-01-DD-02-last-product-added",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\\attachments\\TC-01-DD-02-last-product-added-a1eb032cc1c7448d8f20f990364e283fa97cb200.png"
+                        },
+                        {
+                          "name": "TC-02-DD-02-cart",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\\attachments\\TC-02-DD-02-cart-bf7da487df406e66db8d4a8ff2cd2581ff011cb5.png"
+                        },
+                        {
+                          "name": "TC-03-DD-02-order-form",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\\attachments\\TC-03-DD-02-order-form-affd85cfae2a936e475ad1d4fb25c363173ce11d.png"
+                        },
+                        {
+                          "name": "TC-03-DD-02-confirmation",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-2ad13-laptop-and-a-monitor-DD-02--chromium\\attachments\\TC-03-DD-02-confirmation-359fd109008bc6c4e96f0f9570a34d8534c10e88.png"
+                        },
+                        {
+                          "name": "TC-03-DD-02-confirmation-data",
+                          "contentType": "application/json",
+                          "body": "ewogICJ0aXRsZSI6ICJUaGFuayB5b3UgZm9yIHlvdXIgcHVyY2hhc2UhIiwKICAiaWQiOiAiNTE2MDUxNSIsCiAgImFtb3VudCI6IDExOTAsCiAgImNhcmROdW1iZXIiOiAiVEVTVC1DQVJELU1XRkZYREVKNzI1OCIsCiAgIm5hbWUiOiAiUUEgVGVzdGVyIG13ZmZ4ZGVqNzI1OCIsCiAgImRhdGUiOiAiMTMvMTAvMjAyNiIKfQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "161251ec27521b3157b4-89ae23802fe41c7c1ca0",
+              "file": "e2e/demoblaze/purchase.spec.ts",
+              "line": 12,
+              "column": 5
+            },
+            {
+              "title": "PUR-04 · Customer buys a phone and a laptop, only the mandatory fields (DD-03)",
+              "ok": true,
+              "tags": [
+                "e2e",
+                "example",
+                "risk:R-01"
+              ],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 19987,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "PUR-01 · Add two products to the cart",
+                          "duration": 16072
+                        },
+                        {
+                          "title": "PUR-02 · Cart lists the products and the right total",
+                          "duration": 2884
+                        },
+                        {
+                          "title": "PUR-03 · Complete the purchase form",
+                          "duration": 556
+                        },
+                        {
+                          "title": "PUR-04 · Finish the purchase and check the confirmation",
+                          "duration": 183
+                        }
+                      ],
+                      "startTime": "2026-11-13T20:39:54.682Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "TC-01-DD-03-last-product-added",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\\attachments\\TC-01-DD-03-last-product-added-22d6964f04eb958de0d74b728484931f31239e91.png"
+                        },
+                        {
+                          "name": "TC-02-DD-03-cart",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\\attachments\\TC-02-DD-03-cart-a570553120fe39a0c0b64dd0666448e55186e9e0.png"
+                        },
+                        {
+                          "name": "TC-03-DD-03-order-form",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\\attachments\\TC-03-DD-03-order-form-4903e06a7894c3f298b328406ee37341728c6fc1.png"
+                        },
+                        {
+                          "name": "TC-03-DD-03-confirmation",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\playwright archetype\\test-results\\e2e-demoblaze-purchase-Dem-e80f5-the-mandatory-fields-DD-03--chromium\\attachments\\TC-03-DD-03-confirmation-9fb9f4157693466230322af2b76652171b626f8b.png"
+                        },
+                        {
+                          "name": "TC-03-DD-03-confirmation-data",
+                          "contentType": "application/json",
+                          "body": "ewogICJ0aXRsZSI6ICJUaGFuayB5b3UgZm9yIHlvdXIgcHVyY2hhc2UhIiwKICAiaWQiOiAiODM1Nzc2NiIsCiAgImFtb3VudCI6IDEzNTAsCiAgImNhcmROdW1iZXIiOiAiVEVTVC1DQVJELU1XRkZYSTNLODMzMCIsCiAgIm5hbWUiOiAiUUEgVGVzdGVyIG13ZmZ4aTNrODMzMCIsCiAgImRhdGUiOiAiMTMvMTAvMjAyNiIKfQ=="
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "161251ec27521b3157b4-eb5ec2ed07ab2479ce61",
+              "file": "e2e/demoblaze/purchase.spec.ts",
+              "line": 12,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-13T20:39:29.322Z",
+    "duration": 45523.380000000005,
+    "expected": 6,
+    "skipped": 2,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
