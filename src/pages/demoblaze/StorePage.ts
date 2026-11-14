@@ -20,11 +20,16 @@ export class StorePage extends BasePage {
     await this.page.getByRole('link', { name: category, exact: true }).click();
   }
 
-  /** Opens a product from the store, filtering by its category first. */
+  /**
+   * Opens a product from the store, filtering by its category first.
+   * While the category reloads, the store can briefly render the same card twice
+   * (old and new list), so the first matching link is used: both point to the same product.
+   */
   async openProduct(product: Product): Promise<void> {
     await this.selectCategory(product.category);
-    await expect(this.productLink(product.name)).toBeVisible();
-    await this.productLink(product.name).click();
+    const link = this.productLink(product.name).first();
+    await expect(link).toBeVisible();
+    await link.click();
     await this.page.waitForURL(/prod\.html/);
   }
 }
