@@ -23,9 +23,18 @@ async function pageFor(role: Role, browser: Browser, testInfo: TestInfo, use: (p
 type RoleFixtures = {
   memberPage: Page;
   adminPage: Page;
+  /** Skips the test with a clear reason when no BASE_URL is configured (e.g. CI without the variable). */
+  requireBaseUrl: void;
 };
 
 export const test = base.extend<RoleFixtures>({
+  requireBaseUrl: [
+    async ({ baseURL }, use, testInfo) => {
+      testInfo.skip(!baseURL, 'BASE_URL is not set (.env locally, repository variable in CI).');
+      await use();
+    },
+    { auto: true },
+  ],
   memberPage: async ({ browser }, use, testInfo) => pageFor('member', browser, testInfo, use),
   adminPage: async ({ browser }, use, testInfo) => pageFor('admin', browser, testInfo, use),
 });
