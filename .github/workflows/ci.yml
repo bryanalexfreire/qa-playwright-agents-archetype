@@ -49,12 +49,17 @@ jobs:
           cache: npm
       - run: npm ci
 
+      - name: Unit tests (support code, no browser)
+        run: npx playwright test --project=unit
+
+      # Downloads Playwright's browsers. If the download fails, the run continues: the Chromium projects
+      # fall back to the Chrome preinstalled on the runner (src/support/browsers.ts) and the log says so.
       - name: Install browsers
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            npx playwright install --with-deps chromium
+            npm run setup -- chromium || echo "::warning::Playwright browser download failed; Chromium projects use the installed Chrome"
           else
-            npx playwright install --with-deps
+            npm run setup || echo "::warning::Playwright browser download failed; see the [browsers] lines of the test step"
           fi
 
       # Pull requests: chromium only (fast feedback). develop / release / hotfix: every browser and device.

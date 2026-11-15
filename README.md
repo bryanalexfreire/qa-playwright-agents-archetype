@@ -89,10 +89,27 @@ remove-example.bat           # delete the example and keep the clean archetype (
 | `npm test` | All projects (chromium, firefox, webkit, mobile-chrome, mobile-safari) |
 | `npm run test:smoke` | `@smoke` tests |
 | `npm run test:mobile` | Mobile projects |
+| `npm run test:unit` | Unit tests of the support code (no browser) |
+| `npm run setup [-- chromium]` | Download Playwright's browsers (mirror retry, fallback status; see Browsers) |
 | `npm run test:ui` | Playwright UI mode |
 | `npm run report` | Open the HTML report of the last run |
 | `npm run report:publish -- --label <name>` | Save the last run in `reports/<date>-<label>/` (HTML with evidence per step, summary, JSON, JUnit) to commit it |
 | `npm run typecheck` / `npm run lint:specs` | Static checks used by CI |
+
+## Browsers
+
+`npm run setup` downloads Playwright's browsers and ffmpeg (video). If the download fails, the run does not stop:
+
+| Need | 1st choice | Fallback when it is missing | Otherwise |
+|---|---|---|---|
+| Chromium projects (`chromium`, `mobile-chrome`, `setup`) | Playwright's Chromium | installed **Google Chrome**, then **Microsoft Edge** (`channel`; any version works) | message with the fix |
+| Firefox / WebKit projects | Playwright's builds | none (Playwright needs its own builds) | message: run `npm run setup` |
+| Video (`retain-on-failure`) | Playwright's ffmpeg | video off for the run; traces and screenshots still work | — |
+
+- The decision is printed at the start of a run as `[browsers] ...` lines when something is missing (`npm run setup` prints the full status).
+- Corporate network blocking the download: set `PW_DOWNLOAD_MIRROR` (or `PLAYWRIGHT_DOWNLOAD_HOST`) to an internal mirror; `npm run setup` retries through it.
+- Force a browser for the Chromium projects: `PW_CHROMIUM_CHANNEL=chromium | chrome | msedge`.
+- Logic in `src/support/browsers.ts`, unit tests in `tests/unit/browsers.test.ts` (`npm run test:unit`).
 
 ## Reports and evidence
 - Every step that proves a requirement attaches a screenshot (`evidence()`), also when the test passes; failures add screenshot, video and trace.

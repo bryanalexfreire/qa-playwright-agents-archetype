@@ -8,9 +8,10 @@
     "node": ">=20"
   },
   "scripts": {
-    "setup": "npx playwright install --with-deps",
+    "setup": "node scripts/install-browsers.mjs",
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
+    "test:unit": "playwright test --project=unit",
     "test:chromium": "playwright test --project=chromium",
     "test:mobile": "playwright test --project=mobile-chrome --project=mobile-safari",
     "test:headed": "playwright test --headed --project=chromium",
