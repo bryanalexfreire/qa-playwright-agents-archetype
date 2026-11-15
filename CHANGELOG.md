@@ -3,6 +3,8 @@
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/) and [SemVer](https://semver.org/).
 
 ## [Unreleased]
+
+## [0.2.0] - 2026-11-15
 ### Added
 - Browser resolution with fallback (`src/support/browsers.ts`): Chromium projects use the installed Chrome or Edge when Playwright's Chromium is missing; video turns off when ffmpeg is missing; clear `[browsers]` messages; `PW_CHROMIUM_CHANNEL` and `PW_DOWNLOAD_MIRROR`.
 - `npm run setup` (`scripts/install-browsers.mjs`): download, retry through a mirror, status of every project.
