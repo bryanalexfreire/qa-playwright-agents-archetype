@@ -23,7 +23,7 @@ Step by step
 3. Install dependencies:
      npm ci
 4. Install the browsers:
-     npx playwright install chromium
+     npm run setup -- chromium   (if the download fails, the installed Chrome or Edge is used)
    (all browsers and devices: npm run setup)
 5. Run the example (Chromium):
      npm run test:example
