@@ -52,14 +52,20 @@ export function resolveChromium(input: ChromiumInput): ChromiumResolution {
     if (forced === 'chromium') {
       return input.bundledInstalled
         ? { source: 'forced', message: 'Chromium projects: Playwright Chromium (forced)' }
-        : { source: 'missing', message: `PW_CHROMIUM_CHANNEL=chromium but Playwright Chromium is not installed. ${FIX}` };
+        : {
+            source: 'missing',
+            message: `PW_CHROMIUM_CHANNEL=chromium but Playwright Chromium is not installed. ${FIX}`,
+          };
     }
     if (forced === 'chrome' || forced === 'msedge') {
       return input.installed[forced]
         ? { channel: forced, source: 'forced', message: `Chromium projects: installed ${label(forced)} (forced)` }
         : { source: 'missing', message: `PW_CHROMIUM_CHANNEL=${forced} but ${label(forced)} is not installed.` };
     }
-    return { source: 'missing', message: `PW_CHROMIUM_CHANNEL="${input.forced}" is not valid; use chromium, chrome or msedge.` };
+    return {
+      source: 'missing',
+      message: `PW_CHROMIUM_CHANNEL="${input.forced}" is not valid; use chromium, chrome or msedge.`,
+    };
   }
   if (input.bundledInstalled) {
     return { source: 'bundled', message: 'Chromium projects: Playwright Chromium' };
@@ -73,7 +79,10 @@ export function resolveChromium(input: ChromiumInput): ChromiumResolution {
       };
     }
   }
-  return { source: 'missing', message: `No Chromium browser available: Playwright Chromium is not installed and neither is Chrome or Edge. ${FIX}` };
+  return {
+    source: 'missing',
+    message: `No Chromium browser available: Playwright Chromium is not installed and neither is Chrome or Edge. ${FIX}`,
+  };
 }
 
 /** Video setting to use: the configured one, or "off" when ffmpeg is missing (pure, unit tested). */
@@ -81,7 +90,8 @@ export function resolveVideo(configured: VideoMode, ffmpegInstalled: boolean): {
   if (configured === 'off' || ffmpegInstalled) return { video: configured };
   return {
     video: 'off',
-    message: 'Playwright ffmpeg is not installed: video recording is off for this run (traces and screenshots still work). Run "npm run setup".',
+    message:
+      'Playwright ffmpeg is not installed: video recording is off for this run (traces and screenshots still work). Run "npm run setup".',
   };
 }
 
@@ -101,15 +111,18 @@ export function ffmpegInstalled(): boolean {
   if (!root) return false;
   const require = createRequire(import.meta.url);
   const manifest = path.join(path.dirname(require.resolve('playwright-core/package.json')), 'browsers.json');
-  const ffmpeg = (JSON.parse(fs.readFileSync(manifest, 'utf8')).browsers as { name: string; revision: string }[])
-    .find((b) => b.name === 'ffmpeg');
+  const ffmpeg = (JSON.parse(fs.readFileSync(manifest, 'utf8')).browsers as { name: string; revision: string }[]).find(
+    (b) => b.name === 'ffmpeg',
+  );
   return !!ffmpeg && exists(path.join(root, `ffmpeg-${ffmpeg.revision}`));
 }
 
 /** Message for Firefox / WebKit when Playwright's build is missing (no system fallback exists). */
 export function missingBundledMessage(name: 'firefox' | 'webkit'): string {
-  return `Playwright ${name} is not installed: the ${name} projects will fail. Run "npm run setup" ` +
-    '(or set PLAYWRIGHT_DOWNLOAD_HOST to a mirror). There is no system fallback for this browser.';
+  return (
+    `Playwright ${name} is not installed: the ${name} projects will fail. Run "npm run setup" ` +
+    '(or set PLAYWRIGHT_DOWNLOAD_HOST to a mirror). There is no system fallback for this browser.'
+  );
 }
 
 /** Usual install locations of the system browsers that Playwright can drive with `channel`. */

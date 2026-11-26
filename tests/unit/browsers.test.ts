@@ -38,7 +38,11 @@ test.describe('resolveChromium', () => {
   });
 
   test('honours a forced system channel that is installed', () => {
-    const r = resolveChromium({ forced: ' MSEDGE ', bundledInstalled: true, installed: { chrome: true, msedge: true } });
+    const r = resolveChromium({
+      forced: ' MSEDGE ',
+      bundledInstalled: true,
+      installed: { chrome: true, msedge: true },
+    });
     expect(r).toMatchObject({ source: 'forced', channel: 'msedge' });
   });
 

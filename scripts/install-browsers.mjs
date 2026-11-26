@@ -9,7 +9,8 @@ import { spawnSync } from 'node:child_process';
 
 const browsers = process.argv.slice(2);
 const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-const run = (args, env = process.env) => spawnSync(npx, args, { stdio: 'inherit', env, shell: process.platform === 'win32' }).status;
+const run = (args, env = process.env) =>
+  spawnSync(npx, args, { stdio: 'inherit', env, shell: process.platform === 'win32' }).status;
 
 const install = (env) => run(['playwright', 'install', '--with-deps', ...browsers], env);
 

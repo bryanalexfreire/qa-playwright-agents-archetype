@@ -1,0 +1,41 @@
+name: Performance (k6)
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'k6 script to run'
+        type: choice
+        options: [perf/smoke.js, perf/load.js]
+        default: perf/smoke.js
+      base_url:
+        description: 'Base URL under test (empty: the script default)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  k6:
+    name: k6 ${{ inputs.script }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: grafana/setup-k6-action@v1
+      - name: Run
+        env:
+          BASE_URL: ${{ inputs.base_url }}
+        run: |
+          if [ -n "$BASE_URL" ]; then
+            k6 run -e BASE_URL="$BASE_URL" --summary-export=k6-summary.json "${{ inputs.script }}"
+          else
+            k6 run --summary-export=k6-summary.json "${{ inputs.script }}"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k6-summary
+          path: k6-summary.json
+          retention-days: 30

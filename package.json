@@ -20,15 +20,28 @@
     "report:publish": "node scripts/publish-report.mjs",
     "codegen": "playwright codegen",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint:specs": "node scripts/check-traceability.mjs",
-    "test:example": "playwright test tests/e2e/demoblaze tests/bugs/demoblaze --project=chromium",
-    "example:remove": "remove-example.bat"
+    "test:example": "playwright test examples/demoblaze --project=chromium",
+    "test:api": "playwright test --project=api",
+    "test:a11y": "playwright test --project=chromium --grep @a11y",
+    "perf:smoke": "k6 run perf/smoke.js",
+    "agents:link": "node scripts/link-agents.mjs",
+    "example:remove": "node scripts/remove-example.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
+    "@eslint/js": "^9.39.5",
     "@playwright/test": "^1.56.0",
     "@types/node": "^22.0.0",
     "dotenv": "^16.4.5",
-    "typescript": "^5.6.0"
+    "eslint": "^9.39.5",
+    "eslint-plugin-playwright": "^2.12.2",
+    "globals": "^15.15.0",
+    "prettier": "^3.10.1",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.74.0"
   }
 }
