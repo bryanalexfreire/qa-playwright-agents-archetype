@@ -3,6 +3,8 @@
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/) and [SemVer](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.0] - 2026-11-26
 ### Added
 - API example (`examples/api/`): typed client, contract and negative tests on the Posts API; `api` Playwright project (no browser).
 - k6 scripts (`perf/smoke.js`, `perf/load.js`) with thresholds and a manual workflow (`.github/workflows/perf.yml`).

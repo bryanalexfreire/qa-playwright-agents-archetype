@@ -1,6 +1,6 @@
 {
   "name": "qa-playwright-agents-archetype",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Playwright archetype with AI testing agents: risk-based exploratory testing, screen-by-screen validation and test generation with human approval.",
   "type": "module",
