@@ -9,8 +9,8 @@ on:
 
 permissions:
   contents: read
-  checks: write          # JUnit test report as a check run
-  pull-requests: write   # test report summary on the pull request
+  checks: write # JUnit test report as a check run
+  pull-requests: write # test report summary on the pull request
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
       - run: npm run lint:specs
 
   e2e:
@@ -67,7 +69,7 @@ jobs:
       - name: Run tests
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            npx playwright test --project=setup --project=chromium || true
+            npx playwright test --project=setup --project=chromium --project=api || true
           else
             npx playwright test || true
           fi
@@ -92,12 +94,49 @@ jobs:
         with:
           name: test-report-${{ github.run_number }}
           path: |
+            playwright-report/
             ${{ steps.report.outputs.dir }}
             test-results/
           retention-days: 30
+
+      - name: Keep the HTML report for GitHub Pages
+        if: always() && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: playwright-report/
+          retention-days: 1
 
       - name: Fail on unexpected failures (known bugs are reported, not blocking)
         if: always() && steps.report.outputs.unexpected != '0'
         run: |
           echo "Unexpected failures: ${{ steps.report.outputs.unexpected }} (known bugs: ${{ steps.report.outputs.known_bugs }})"
           exit 1
+
+  # Live report: set the repository variable ENABLE_PAGES=true and Pages > Source = "GitHub Actions".
+  pages:
+    name: Publish the HTML report (GitHub Pages)
+    needs: e2e
+    if: always() && github.ref == 'refs/heads/main' && vars.ENABLE_PAGES == 'true' && needs.e2e.result != 'skipped'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: html-report
+          path: site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

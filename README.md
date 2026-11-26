@@ -1,6 +1,26 @@
 # qa-playwright-agents-archetype
 
-Playwright archetype with AI testing agents. It covers the full testing cycle for a web app — risk analysis, plan per screen, exploratory charters, independent bug verification, bug reports, automated regression tests and the final report — with a human approving every step.
+[![CI](https://github.com/bryanalexfreire/qa-playwright-agents-archetype/actions/workflows/ci.yml/badge.svg)](https://github.com/bryanalexfreire/qa-playwright-agents-archetype/actions/workflows/ci.yml)
+![Playwright](https://img.shields.io/badge/Playwright-1.56%2B-2EAD33?logo=playwright&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
+![k6](https://img.shields.io/badge/k6-performance-7D64FF?logo=k6&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+A Playwright test architecture you can start a project from: web E2E, API, performance (k6) and accessibility in one repository, with AI testing agents that cover the full cycle (risk analysis, plan per screen, exploratory charters, independent bug verification, bug reports, automated regression tests and the final report) and a human approving every step.
+
+## What it demonstrates
+| Area | How | Where |
+|---|---|---|
+| E2E with a maintainable design | Page Object Model, component objects, fixtures, data-driven tests, builders, typed models | `src/pages`, `examples/demoblaze/` |
+| API testing | Typed client, contract checks, negative tests; no browser, runs once | `examples/api/` |
+| Performance | k6 smoke and load scripts with pass/fail thresholds, manual CI workflow | `perf/`, `.github/workflows/perf.yml` |
+| Accessibility | axe-core helper (WCAG 2.1 A/AA) that fails on serious violations and attaches the findings | `src/support/a11y.ts`, `tests/a11y/` |
+| Traceability | Requirement ID in every test title, checked in CI | `scripts/check-traceability.mjs` |
+| Quality gates in CI | Types, ESLint, Prettier, traceability, unit tests, multi-browser E2E, JUnit checks, evidence per step | `.github/workflows/ci.yml` |
+| Resilient setup | Browser download with mirror and system Chrome/Edge fallback, unit-tested | `src/support/browsers.ts` |
+| Agentic testing | Agents and skills with human approval and an audit log | `AGENTS.md`, `.agents/` |
+
+Everything uses public practice sites and fictitious data.
 
 ## Use this template
 1. On GitHub: **Use this template → Create a new repository** (or clone and change the remote).
@@ -13,10 +33,10 @@ Playwright archetype with AI testing agents. It covers the full testing cycle fo
 4. Put the product requirements in `qa/requirements/`.
 5. Rename `src/pages/HomePage.ts` and `tests/smoke/home.spec.ts` to your first screen.
 6. Connect your agent client (once per machine). The agent files are vendor-neutral; link them to the folder and rules file your client reads:
-   ```bat
-   link-agents.bat <client-folder> <client-rules-file>
+   ```bash
+   npm run agents:link -- <client-folder> <client-rules-file>
    ```
-   It creates a local junction to `.agents/` and a hard link to `AGENTS.md`, and excludes both from Git (`.git/info/exclude`), so nothing client-specific is committed. Undo with `link-agents.bat /remove <client-folder> <client-rules-file>`. Clients that read `AGENTS.md` natively need no link for the rules.
+   It creates a local link to `.agents/` (a junction on Windows) and a hard link to `AGENTS.md`, and excludes both from Git (`.git/info/exclude`), so nothing client-specific is committed. It works on Windows, macOS and Linux. Undo with `npm run agents:link -- --remove <client-folder> <client-rules-file>`. Clients that read `AGENTS.md` natively need no link for the rules.
 7. Open the folder with your agent client: it loads the project rules, the agents, the skills and the browser server (`.mcp.json`).
 
 ## Structure
@@ -26,7 +46,6 @@ AGENTS.md      project rules for the agents (lifecycle, approvals, workspace)
   agents/      test-planner · charter-explorer · bug-verifier · test-generator · test-healer · report-reviewer
   skills/      risk-analysis · exploratory-testing · bug-report · test-automation · test-summary-report
   settings.json  permissions (agents cannot commit, push, read .env or saved sessions)
-link-agents.bat     links .agents/ and AGENTS.md to your agent client (local only)
 .github/       CI (Git flow branches) and PR template
 qa/            requirements, risks, test plan, plans per screen, sessions (notes, bugs, evidence, summary)
 src/pages/       Page Objects (one per screen, extend BasePage)
@@ -35,10 +54,12 @@ src/fixtures/    role fixtures with saved sessions (.auth/<role>.json) and page-
 src/models/      typed domain models used by pages and data
 src/data/        data sets for data-driven tests (JSON) and builders
 src/support/     shared helpers (e.g. native dialog handling)
-tests/           auth.setup · smoke · e2e · bugs · a11y
+tests/           auth.setup · smoke · e2e · bugs · a11y · unit
+examples/        runnable examples, removable: demoblaze (E2E) and api (REST)
+perf/            k6 scripts (smoke, load)
 docs/            project documentation
 reports/         published test reports (index, latest, one folder per run) — see reports/README.md
-scripts/         check-traceability · publish-report
+scripts/         check-traceability · publish-report · install-browsers · link-agents · remove-example
 ```
 
 ## How the agents work together
@@ -60,26 +81,31 @@ Example prompts:
 - "Run the suite and heal what broke."
 
 <!-- example:start -->
-## Worked example: Demoblaze purchase (removable)
+## Worked examples (removable)
+### Demoblaze purchase, E2E (`examples/demoblaze/`)
 A complete E2E example on https://www.demoblaze.com shows every convention of the archetype:
 
 | Practice | Where |
 |---|---|
-| Page Object Model + OOP (inheritance from `BasePage`, encapsulated locators, user-level actions) | `src/pages/demoblaze/` |
-| Component objects (navigation, order modal, confirmation dialog) | `src/components/demoblaze/` |
-| Page objects injected as fixtures (no `new` in tests), own base URL | `src/fixtures/demoblaze.ts` |
-| Data-driven testing (one test per data row) | `src/data/demoblaze/*.json` → `tests/e2e/demoblaze/` |
-| Builder pattern for fictitious test data | `src/data/demoblaze/CustomerBuilder.ts` |
-| Typed domain models | `src/models/demoblaze.ts` |
+| Page Object Model + OOP (inheritance from `BasePage`, encapsulated locators, user-level actions) | `examples/demoblaze/pages/` |
+| Component objects (navigation, order modal, confirmation dialog) | `examples/demoblaze/components/` |
+| Page objects injected as fixtures (no `new` in tests), own base URL | `examples/demoblaze/fixtures.ts` |
+| Data-driven testing (one test per data row) | `examples/demoblaze/data/*.json` → `examples/demoblaze/tests/e2e/` |
+| Builder pattern for fictitious test data | `examples/demoblaze/data/CustomerBuilder.ts` |
+| Typed domain models | `examples/demoblaze/models.ts` |
 | Requirement traceability (PUR-01..04) and steps per requirement | test titles and `test.step` |
-| Known-bug spec that fails until the fix | `tests/bugs/demoblaze/BUG-001.spec.ts` |
-| Requirements, screen plan, exercise deliverables | `qa/requirements/`, `qa/plans/`, `docs/example-demoblaze/` |
-| Functional flow diagram per test case (Mermaid) and the purchase journey | `qa/flows/demoblaze/` |
+| Known-bug spec that fails until the fix | `examples/demoblaze/tests/bugs/BUG-001.spec.ts` |
+| Requirements, screen plan, exercise deliverables | `examples/demoblaze/qa/`, `examples/demoblaze/docs/` |
+| Functional flow diagram per test case (Mermaid) and the purchase journey | `examples/demoblaze/qa/flows/` |
+
+### Posts API, REST (`examples/api/`)
+Contract, behaviour and negative tests of a REST resource against the public JSONPlaceholder API: a typed client (`PostsClient`), a runtime contract check, create/read/update/delete, filters, 404 and a response-time budget. It uses Playwright's request client, so it runs once, without a browser. Point it at another environment with `API_BASE_URL`.
 
 ```bash
-npm run test:example          # run the example on chromium
-remove-example.bat /dry      # list what would be removed (Windows)
-remove-example.bat           # delete the example and keep the clean archetype (asks first; /y skips the prompt)
+npm run test:example          # Demoblaze E2E on chromium
+npm run test:api              # Posts API tests
+npm run example:remove -- --dry-run   # list what would be removed
+npm run example:remove                # delete the examples and keep the clean archetype (asks first; --yes skips the prompt)
 ```
 <!-- example:end -->
 
@@ -90,11 +116,14 @@ remove-example.bat           # delete the example and keep the clean archetype (
 | `npm run test:smoke` | `@smoke` tests |
 | `npm run test:mobile` | Mobile projects |
 | `npm run test:unit` | Unit tests of the support code (no browser) |
+| `npm run test:api` | API tests (no browser) |
+| `npm run test:a11y` | Accessibility checks (axe-core) |
+| `npm run perf:smoke` | k6 smoke test (needs [k6](https://grafana.com/docs/k6/latest/set-up/install-k6/)); more in `perf/README.md` |
 | `npm run setup [-- chromium]` | Download Playwright's browsers (mirror retry, fallback status; see Browsers) |
 | `npm run test:ui` | Playwright UI mode |
 | `npm run report` | Open the HTML report of the last run |
-| `npm run report:publish -- --label <name>` | Save the last run in `reports/<date>-<label>/` (HTML with evidence per step, summary, JSON, JUnit) to commit it |
-| `npm run typecheck` / `npm run lint:specs` | Static checks used by CI |
+| `npm run report:publish -- --label <name>` | Save the last run in `reports/<date>-<label>/` (summary, JSON, JUnit; add `--with-html` to keep the full HTML report too) |
+| `npm run typecheck` · `npm run lint` · `npm run format:check` · `npm run lint:specs` | Static checks used by CI (`npm run format` fixes the style) |
 
 ## Browsers
 
@@ -113,7 +142,8 @@ remove-example.bat           # delete the example and keep the clean archetype (
 
 ## Reports and evidence
 - Every step that proves a requirement attaches a screenshot (`evidence()`), also when the test passes; failures add screenshot, video and trace.
-- `npm run report:publish` turns the last run into a committed report with `summary.md`.
+- `npm run report:publish` turns the last run into a versioned `summary.md` with the results table, known bugs and evidence list. The heavy HTML report is not committed: CI uploads it as a run artifact and, when enabled, publishes it to GitHub Pages.
+- Live report: set the repository variable `ENABLE_PAGES=true` and Settings → Pages → Source = GitHub Actions; every push to `main` then updates `https://<user>.github.io/<repository>/`.
 - CI (GitHub Actions) writes the summary on the job page, the JUnit results in the checks tab, and uploads the report and evidence as an artifact. Known-bug specs (`@bug`) are reported but do not fail the build; any other failure does.
 
 ## Branching
@@ -124,3 +154,6 @@ Git flow — see [CONTRIBUTING.md](CONTRIBUTING.md). Agents never commit or push
 - No bug without independent verification; quality over quantity.
 - No credentials typed by agents; test accounts only; fictitious data.
 - Requirement IDs in test titles for traceability; no hard waits; locators by role and label.
+
+## License
+MIT, see [LICENSE](LICENSE).
