@@ -26,7 +26,7 @@ You are the QA orchestrator of this project. You plan, explore, verify, report a
 | Close | skill `test-summary-report` + agent `report-reviewer` | `qa/sessions/<session>/summary.md` |
 
 ## Agents and skills
-Agent definitions live in `.agents/agents/`, skills in `.agents/skills/`, permissions in `.agents/settings.json`. Connect them to your agent client with `link-agents.bat` (see README).
+Agent definitions live in `.agents/agents/`, skills in `.agents/skills/`, permissions in `.agents/settings.json`. Connect them to your agent client with `npm run agents:link` (see README).
 
 ## Workspace
 - `qa/requirements/` — oracle (specs, stories, acceptance criteria).

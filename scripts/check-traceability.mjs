@@ -3,7 +3,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const root = 'tests';
+const roots = [
+  'tests',
+  ...(fs.existsSync('examples') ? fs.readdirSync('examples').map((d) => path.join('examples', d, 'tests')) : []),
+];
 const files = [];
 const walk = (dir) => {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -12,7 +15,7 @@ const walk = (dir) => {
     else if (entry.name.endsWith('.spec.ts')) files.push(full);
   }
 };
-if (fs.existsSync(root)) walk(root);
+for (const root of roots) if (fs.existsSync(root)) walk(root);
 
 const titleRe = /\btest(?:\.(?:only|skip|fixme))?\(\s*(['"`])(.+?)\1/g;
 const problems = [];
@@ -22,7 +25,8 @@ for (const file of files) {
     const title = match[2];
     const inBugs = file.split(path.sep).includes('bugs');
     if (inBugs && !/^BUG-\d{3}\b/.test(title)) problems.push(`${file}: "${title}" must start with BUG-XXX`);
-    if (!inBugs && !/^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*-\d+\s·\s/.test(title)) problems.push(`${file}: "${title}" must start with "<REQ-ID> · "`);
+    if (!inBugs && !/^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*-\d+\s·\s/.test(title))
+      problems.push(`${file}: "${title}" must start with "<REQ-ID> · "`);
   }
 }
 

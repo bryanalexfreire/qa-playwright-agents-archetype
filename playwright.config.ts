@@ -11,15 +11,17 @@ if (!process.env.TEST_WORKER_INDEX && (notable.length || printAll)) {
   console.warn((printAll ? browsers.messages : notable).map((m) => `[browsers] ${m}`).join('\n'));
 }
 
-// Unit tests of the support code (tests/unit/*.test.ts) run without a browser in the "unit" project.
-const notUnit = /tests[\\/]unit[\\/]/;
+// Tests that need no browser run in their own projects: unit tests of the support code ("unit") and API tests ("api").
+const notUnit = /tests[\\/]unit[\\/]|examples[\\/]api[\\/]/;
 
 /**
  * Browser and device strategy (risk-based, by expected customer usage).
  * Order the projects by priority for your product; CI runs all of them.
  */
 export default defineConfig({
-  testDir: './tests',
+  // The archetype's own tests live in tests/; runnable examples live in examples/<name>/tests/.
+  testDir: '.',
+  testMatch: /(?:^|[\\/])(?:tests|examples[\\/][^\\/]+[\\/]tests)[\\/].*\.(?:spec|test)\.ts$/,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
@@ -46,6 +48,8 @@ export default defineConfig({
     // Signs in once per role and saves the session to .auth/<role>.json.
     { name: 'setup', testMatch: /auth\.setup\.ts/, use: { ...browsers.chromiumUse } },
     { name: 'unit', testMatch: /tests[\\/]unit[\\/].*\.test\.ts/ },
+    // API tests use Playwright's request client: no browser, so they run once, not once per browser.
+    { name: 'api', testMatch: /examples[\\/]api[\\/]tests[\\/].*\.spec\.ts/ },
 
     {
       name: 'chromium',
@@ -55,7 +59,12 @@ export default defineConfig({
     },
     { name: 'firefox', use: { ...devices['Desktop Firefox'] }, dependencies: ['setup'], testIgnore: notUnit },
     { name: 'webkit', use: { ...devices['Desktop Safari'] }, dependencies: ['setup'], testIgnore: notUnit },
-    { name: 'mobile-chrome', use: { ...devices['Pixel 7'], ...browsers.chromiumUse }, dependencies: ['setup'], testIgnore: notUnit },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 7'], ...browsers.chromiumUse },
+      dependencies: ['setup'],
+      testIgnore: notUnit,
+    },
     { name: 'mobile-safari', use: { ...devices['iPhone 14'] }, dependencies: ['setup'], testIgnore: notUnit },
   ],
 });
