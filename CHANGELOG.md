@@ -3,6 +3,8 @@
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/) and [SemVer](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- `uniqueId()` helper in `src/data/unique.ts` (unique per parallel worker and run) and its unit tests.
 
 ## [1.0.0] - 2026-11-26
 ### Added
