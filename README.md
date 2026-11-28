@@ -52,7 +52,7 @@ src/pages/       Page Objects (one per screen, extend BasePage)
 src/components/  component objects reused across screens (nav bars, modals, dialogs)
 src/fixtures/    role fixtures with saved sessions (.auth/<role>.json) and page-object fixtures
 src/models/      typed domain models used by pages and data
-src/data/        data sets for data-driven tests (JSON) and builders
+src/data/        test-data helpers: `uniqueId()` for records that never collide between parallel workers (data sets and builders live next to each example)
 src/support/     shared helpers (e.g. native dialog handling)
 tests/           auth.setup · smoke · e2e · bugs · a11y · unit
 examples/        runnable examples, removable: demoblaze (E2E) and api (REST)
@@ -92,6 +92,7 @@ A complete E2E example on https://www.demoblaze.com shows every convention of th
 | Page objects injected as fixtures (no `new` in tests), own base URL | `examples/demoblaze/fixtures.ts` |
 | Data-driven testing (one test per data row) | `examples/demoblaze/data/*.json` → `examples/demoblaze/tests/e2e/` |
 | Builder pattern for fictitious test data | `examples/demoblaze/data/CustomerBuilder.ts` |
+| Unique ids for data created by tests (safe in parallel) | `src/data/unique.ts` |
 | Typed domain models | `examples/demoblaze/models.ts` |
 | Requirement traceability (PUR-01..04) and steps per requirement | test titles and `test.step` |
 | Known-bug spec that fails until the fix | `examples/demoblaze/tests/bugs/BUG-001.spec.ts` |
